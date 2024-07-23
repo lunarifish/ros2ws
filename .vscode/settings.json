@@ -1,0 +1,61 @@
+// this requires the following extensions:
+// - ms-python.python
+// - twxs.cmake
+// - xaver.clang-format
+// - xaver.clangd
+// - ms-vscode.cmake-tools
+// - ms-vscode.cpptools
+// - Gruntfuggly.activitusbar
+
+{
+  "python.autoComplete.extraPaths": [
+    "/opt/ros/foxy/lib/python3.8/site-packages"
+  ],
+  "python.analysis.extraPaths": ["/opt/ros/foxy/lib/python3.8/site-packages"], // change the distro name and python version accordingly
+  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.autoImportCompletions": true,
+  "activitusbar.views": [
+    {
+      "name": "task.build",
+      "codicon": "tools",
+      "tooltip": "🛠️ Colcon build"
+    },
+    {
+      "name": "task.clean",
+      "codicon": "trash",
+      "tooltip": "🧹 Remove built artifacts"
+    },
+    {
+      "name": "command.workbench.action.reloadWindow", // this will be useful when developing on a unstable ssh connection :)
+      "codicon": "refresh",
+      "tooltip": "🔄 Reload window"
+    }
+  ],
+  "activitusbar.alignment": "Left",
+  "activitusbar.priority": -1,
+  "terminal.integrated.profiles.linux": {
+    "bash": {
+      "path": "bash",
+      "icon": "terminal-bash",
+      "args": ["-c", "source ${workspaceFolder}/install/setup.bash;exec bash"]
+    }
+  },
+  "clangd.detectExtensionConflicts": true,
+  "clangd.path": "clangd",
+  "clangd.fallbackFlags": [],
+  "clangd.arguments": [
+    "--background-index",
+    "--compile-commands-dir=build",
+    "-j=12",
+    "--all-scopes-completion",
+    "--completion-style=detailed",
+    "--header-insertion=iwyu", // Include what you use
+    "--pch-storage=memory", // pch = precompiled header
+    "--cross-file-rename",
+    "--enable-config",
+    "--fallback-style=Google", // clang-format style to apply by default when no .clang-format file is found
+    "--pretty",
+    "--clang-tidy",
+    "--query-driver=clang++"
+  ]
+}
