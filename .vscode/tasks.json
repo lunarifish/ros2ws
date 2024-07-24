@@ -21,7 +21,7 @@
     {
       "label": "clean",
       "type": "shell",
-      "command": "${workspaceFolder}/scripts/clean.sh",
+      "command": "rm -r ${workspaceFolder}/build;rm -r ${workspaceFolder}/log;rm -r ${workspaceFolder}/install;",
       "group": {
         "kind": "none",
         "isDefault": true
