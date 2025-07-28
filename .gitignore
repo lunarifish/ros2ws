@@ -1,9 +1,12 @@
 .idea
 .cache
 
+build
+install
+log
+
 devel/
 logs/
-build/
 bin/
 lib/
 msg_gen/
